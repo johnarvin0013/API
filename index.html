@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ip">
+    <button id="gen" placeholder ="Enter IP or Domain Name">Generate URL</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("gen").onclick = genURL;
+        function genURL(){
+            var ipAddress = document.getElementById("ip").value;
+            fetch(`http:localhost:1234/${ipAddress}`, {
+                mode: 'cors',
+            })
+            .then(response => response.json())
+            .then (data => {
+                var result = document.getElementById("result");
+                result.innerHTML = `<a href = "${data.url}">Google Map URL</a>`;
+            })
+        }    
+    </script>
+</body>
+</html>
+
+
+<!--sample comment master yeah-->
