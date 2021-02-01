@@ -14,7 +14,7 @@
         document.getElementById("gen").onclick = genURL;
         function genURL(){
             var ipAddress = document.getElementById("ip").value;
-            fetch(`http:localhost:1234/${ipAddress}`, {
+            fetch(`http://localhost:1234/${ipAddress}`, {
                 mode: 'cors',
             })
             .then(response => response.json())
