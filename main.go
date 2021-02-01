@@ -37,11 +37,11 @@ func main() {
 
 	// Authentication-required enpoints
 	//API Service
-	app.Get("/api/v1/ip/:ip", apiservice.GetGMapURL) //1
+	app.Get("/api/v1/ip/:ip", apiservice.GetGMapURL) //1 /api/v1/ip/:ip has been changed
 
 	// Users
-	app.Put("/api/v1/user/", user.UpdateUser)       //2
-	app.Delete("/api/v1/user/:id", user.DeleteUser) //3
+	app.Put("/api/v1/user/", user.UpdateUser)       //2 you need to login first before updating
+	app.Delete("/api/v1/user/:id", user.DeleteUser) //3 you need to login first before deleting
 
 	app.Listen(":1234")
 }
