@@ -18,26 +18,25 @@ func authRequired() func(c *fiber.Ctx) error {
 
 func main() {
 	database.MySQLConnect("root", "", "", "starAPI") // database.PostgreConnect("root", "", "", "starAPI")
+	database.DBConn.AutoMigrate(&user.User{})        //Auto Migrate - automatically make new table inside the database; Auto-Migrate came from the package gorm
 	app := fiber.New()
 
-	database.DBConn.AutoMigrate(&user.User{}) //Auto Migrate - automatically make new table inside the database
-
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowOrigins: "*",                            //* means all user can access the API or you can just specify the user that can use the system (example: facebook.com) only
+		AllowHeaders: "Origin, Content-Type, Accept", //header that we only accept
 	}))
 
 	// Public endpoints
 	// Users
-	app.Get("/api/v1/user/", user.GetUsers)
-	app.Post("/api/v1/user/auth/", user.Authenticate)
-	app.Post("/api/v1/user/", user.NewUser)
+	app.Get("/api/v1/user/", user.GetUsers)           //return list of users in JSON
+	app.Post("/api/v1/user/auth/", user.Authenticate) //accept username and password, return token and user object in JSON
+	app.Post("/api/v1/user/", user.NewUser)           //accepts name, username, password and role
 
 	app.Use(authRequired())
 
 	// Authentication-required enpoints
 	//API Service
-	app.Get("/api/v1/ip/:ip", apiservice.GetGMapURL) //1 /api/v1/ip/:ip has been changed
+	app.Get("/api/v1/ip/:ip", apiservice.GetGMapURL) //These are the 3 breaking points or changes: 1 /api/v1/ip/:ip endpoint has been changed
 
 	// Users
 	app.Put("/api/v1/user/", user.UpdateUser)       //2 you need to login first before updating

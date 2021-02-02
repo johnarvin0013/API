@@ -100,7 +100,10 @@ func NewUser(c *fiber.Ctx) error {
 	err := fiberutils.ParseBody(c, user)
 	user.Password, err = passwordhashing.HashPassword(user.Password)
 	db.Create(&user) //db. is from gorm package which automatically create a query statement either create, update, delete or view //&-get reference from user
-	c.JSON(user)
+	c.JSON(fiberutils.Message{
+		Message: "User Successfully Created",
+		Status:  "success",
+	})
 	return err
 }
 
@@ -116,7 +119,10 @@ func UpdateUser(c *fiber.Ctx) error {
 	if userO["role"] == "admin" || fmt.Sprintf("%v", userO["id"]) == fmt.Sprintf("%d", user.Id) {
 		user.Password, err = passwordhashing.HashPassword(user.Password)
 		db.Model(&user).Where("id = ?", user.Id).Updates(user)
-		c.JSON(user)
+		c.JSON(fiberutils.Message{
+			Message: "User Successfully Updated",
+			Status:  "success",
+		})
 	} else {
 		c.JSON(fiberutils.Message{
 			Message: "No permission to update",
@@ -139,7 +145,10 @@ func DeleteUser(c *fiber.Ctx) error {
 
 	if userO["role"] == "admin" || fmt.Sprintf("%v", userO["id"]) == fmt.Sprintf("%d", user.Id) {
 		db.Delete(&user)
-		c.JSON(user)
+		c.JSON(fiberutils.Message{
+			Message: "User Successfully Deleted",
+			Status:  "success",
+		})
 	} else {
 		c.JSON(fiberutils.Message{
 			Message: "No permission to delete",
