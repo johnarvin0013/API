@@ -22,8 +22,8 @@ func main() {
 	app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*",                            //* means all user can access the API or you can just specify the user that can use the system (example: facebook.com) only
-		AllowHeaders: "Origin, Content-Type, Accept", //header that we only accept
+		AllowOrigins: "*",                                           //* means all user can access the API or you can just specify the user that can use the system (example: facebook.com) only
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization", //header that we only accept
 	}))
 
 	// Public endpoints

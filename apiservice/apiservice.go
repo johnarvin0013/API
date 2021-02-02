@@ -41,8 +41,11 @@ func GetGMapURL(c *fiber.Ctx) error {
 
 func ipAPIRequest(requestURL string, ipapiResponse *IPAPIResponse) {
 	response, _ := http.Get(requestURL)
+	// fmt.Println("Processing")
+	// time.Sleep(3 * time.Second)
 	defer response.Body.Close()
 
 	body, _ := ioutil.ReadAll(response.Body)
+	// fmt.Println("Finish")
 	json.Unmarshal(body, &ipapiResponse)
 }
