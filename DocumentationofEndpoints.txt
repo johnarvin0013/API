@@ -1,0 +1,64 @@
+"Public Endpoints"
+<!--Start of Creating or Adding New User-->
+/api/v1/user/
+Failed (Status 400) - Please Input Username, Password and Name
+Failed (Status 400) - Required Mininum Length of Username, Name and Password is 3, 3 and 8 respectively
+Failed (Status 400) - Username Already Exists
+Success (Status 201) - User Successfully Created
+<!--End of Creating or Adding New User-->
+
+
+<!--Start of Login and Authentication-->
+/api/v1/user/auth
+Failed (Status 400) - Please Input Username and Password
+Failed (Status 401, Database Error) - Incorrect Username or Password
+Success (Status 200) - MappedResponseJSON 
+
+MappedResponseJSON
+Name    Type
+token   string
+user    UserObject
+
+UserObject
+Name        Type
+id          int
+username    string
+password    string
+name        string
+role        string
+
+<!--End of of Login and Authentication-->
+
+
+<!--Start of Authentication-required enpoints (API Service)-->
+/api/v1/ip/:ip (GenMappedObject)
+
+GenMappedObject
+Name        Type
+url         string
+country     string
+city        string
+<!--End of Authentication-required enpoints (API Service)-->
+
+
+<!--Start of Authentication-required enpoints (Update)-->
+/api/v1/user/
+Failed (Status 400) - Please Input Username, Password and Name
+Failed (Status 400) - Required Mininum Length of Username, Name and Password is 3, 3 and 8 respectively
+Failed (Status 401) - No permission to update
+Failed (Status 404) - No User exists
+Success (Status 200) - User Successfully Updated
+<!--End of Authentication-required enpoints (Update)-->
+
+
+<!--Start of Authentication-required enpoints (Delete)-->
+/api/v1/user/:id
+Failed (Status 401) - No permission to delete
+Failed (Status 404) - No User exists
+Success (Status 200) - User Successfully Deleted
+<!--End of Authentication-required enpoints (Update)-->
+
+MessageObject
+Name    Type
+message string
+status  string

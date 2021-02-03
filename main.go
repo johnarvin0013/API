@@ -37,7 +37,6 @@ func main() {
 	// Authentication-required enpoints
 	//API Service
 	app.Get("/api/v1/ip/:ip", apiservice.GetGMapURL) //These are the 3 breaking points or changes: 1 /api/v1/ip/:ip endpoint has been changed
-
 	// Users
 	app.Put("/api/v1/user/", user.UpdateUser)       //2 you need to login first before updating
 	app.Delete("/api/v1/user/:id", user.DeleteUser) //3 you need to login first before deleting
