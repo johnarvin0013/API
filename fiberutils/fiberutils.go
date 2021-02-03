@@ -21,11 +21,21 @@ func GetParamValue(c *fiber.Ctx, param string, message string) string {
 	ipAddress := c.Params("ip")
 
 	if ipAddress == "" {
-		c.JSON(Message{
-			Message: message,
-			Status:  "failed",
-		})
+		SendJSONMessage(c, message, false, 400)
 	}
 
 	return ipAddress
+}
+
+func SendJSONMessage(c *fiber.Ctx, message string, isSuccess bool, httpStatusCode int) {
+	status := "failed"
+
+	if isSuccess {
+		status = "success"
+	}
+
+	c.Status(httpStatusCode).JSON(Message{
+		Message: message,
+		Status:  status,
+	})
 }

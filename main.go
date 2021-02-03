@@ -29,8 +29,8 @@ func main() {
 	// Public endpoints
 	// Users
 	app.Get("/api/v1/user/", user.GetUsers)           //return list of users in JSON
-	app.Post("/api/v1/user/auth/", user.Authenticate) //accept username and password, return token and user object in JSON
 	app.Post("/api/v1/user/", user.NewUser)           //accepts name, username, password and role
+	app.Post("/api/v1/user/auth/", user.Authenticate) //accept username and password, return token and user object in JSON
 
 	app.Use(authRequired())
 

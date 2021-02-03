@@ -5,6 +5,17 @@ fetch('http://localhost:1234/api/v1/user')
   .then(data => console.log(data));
 //End of Getting Users
 
+//Start of selecting all from datase where a specific column is specify
+function forLoop(data){
+	for(var i = 0; i<data.length;++i){
+console.log(data[i].username);
+	}
+}
+
+fetch('http://localhost:1234/api/v1/user')
+  .then(response => response.json())
+  .then(data =>forLoop(data));
+//Start of selecting all from datase where a specific column is specify
 
 //Start of Adding New User
 fetch('http://localhost:1234/api/v1/user/', {
@@ -13,7 +24,7 @@ fetch('http://localhost:1234/api/v1/user/', {
   headers: new Headers({
     'Content-Type': 'application/json'
   }), body: JSON.stringify({ username: "john", password: "wawa", name: "John" })
-}).then(response => response.json()).then(data => console.log(data.username))
+}).then(response => response.json()).then(data => console.log(data))
 //End of Adding New User
 
 
