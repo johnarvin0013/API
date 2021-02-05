@@ -11,6 +11,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+//kukuhanin
 type IPAPIResponse struct {
 	Latitude  float64 `json:"lat"`
 	Longitude float64 `json:"lon"`
@@ -18,6 +19,7 @@ type IPAPIResponse struct {
 	City      string  `json:"city"`
 }
 
+//ibabato or vice-versa
 type GMapURLResponse struct {
 	URL     string `json:"url"`
 	Country string `json:"country"`

@@ -18,13 +18,13 @@ func ParseBody(c *fiber.Ctx, in interface{}) error {
 }
 
 func GetParamValue(c *fiber.Ctx, param string, message string) string {
-	ipAddress := c.Params("ip")
+	paramValue := c.Params(param)
 
-	if ipAddress == "" {
+	if paramValue == "" {
 		SendJSONMessage(c, message, false, 400)
 	}
 
-	return ipAddress
+	return paramValue
 }
 
 func SendJSONMessage(c *fiber.Ctx, message string, isSuccess bool, httpStatusCode int) {

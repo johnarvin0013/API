@@ -149,9 +149,10 @@ func UpdateUser(c *fiber.Ctx) error {
 		}
 
 		user.Password, err = passwordhashing.HashPassword(user.Password)
-		db.First(&user, user.Id)
+		var existingUser User
+		db.First(&existingUser, user.Id)
 
-		if len(user.Role) == 0 {
+		if len(existingUser.Role) == 0 {
 			fiberutils.SendJSONMessage(c, "No User exists", false, 404)
 			return nil
 		}

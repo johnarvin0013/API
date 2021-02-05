@@ -80,7 +80,8 @@ fetch("/api/v1/user/", {
   body: JSON.stringify({
     'id': 5,
     'username': 'john1',
-    'password': 'wawa'
+    'password': 'wawa',
+    'name': ''
   })
 }).then(r => r.json()).then(d => console.log(d))
 //End of Update

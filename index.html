@@ -16,6 +16,7 @@
             var ipAddress = document.getElementById("ip").value;
             fetch(`http://localhost:1234/${ipAddress}`, {
                 mode: 'cors',
+                method: "POST"
             })
             .then(response => response.json())
             .then (data => {
