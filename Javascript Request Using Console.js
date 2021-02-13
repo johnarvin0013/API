@@ -97,3 +97,5 @@ fetch("/api/v1/user/5", {
   })
 }).then(r => r.json()).then(d => console.log(d))
 //End of Delete
+
+//Update February 13, 2021//
